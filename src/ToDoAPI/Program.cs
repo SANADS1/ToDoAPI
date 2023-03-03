@@ -22,7 +22,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("api/todo", async (AppDbContext context) =>
 {
-    var items = context.ToDoItems.ToListAsync();
+    var items = await context.ToDoItems.ToListAsync();
     return Results.Ok(items);
 });
 
