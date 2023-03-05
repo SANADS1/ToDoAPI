@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
@@ -18,6 +18,11 @@ steps:
     inputs:
       command: build
       arguments: '--configuration $(buildConfiguration)'
+
+  - task: UseDotNet@2
+    inputs:
+        packageType: 'sdk'
+        version: '7.0.x'    
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet test'
